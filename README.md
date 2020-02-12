@@ -4,7 +4,7 @@ using the cloud to automate database management and app content
 
 ![](.images/cloud_wf_1b.png)
 
-<img src="images/cloud_wf_1b.png"
+<img src="images/cloud_wf_1a.png"
      alt="cloud workflow"
-     style="float: left; margin-right: 10px;" />
+     style="float: left; width=10%; height=10%; margin-right: 10px;" />
 
