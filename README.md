@@ -6,5 +6,5 @@ using the cloud to automate database management and app content
 
 <img src="images/cloud_wf_1a.png"
      alt="cloud workflow"
-     style="float: left; width=10%; height=10%; margin-right: 10px;" />
+     style="float: left; width:70%; height:70%; margin-right: 10px;" />
 
