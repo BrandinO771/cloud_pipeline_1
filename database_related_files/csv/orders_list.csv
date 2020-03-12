@@ -1,0 +1,15 @@
+Order_Date,Order_id,Customer_id,Item_Code,Quantity,Item_Name,Item_Category,Type,Style,Seating_Material,Frame
+2020-02-03,O_64937,C_50136,cch_6,1,Lovers,couch,sleeper,Modern,canvas,wood
+2020-02-20,O_77348,C_62728,cch_2,2,Couchy_McCouchster,couch,love,Rustic,vinyl,wood
+2020-02-01,O_32930,C_41410,stl_1,6,Stool_Pigeon,stool,tall_backless,Urban,leather,aluminum
+2020-02-16,O_32930,C_41410,cch_7,2,Dealers_Lounge,couch,sectional,Modern,leather,wood
+2020-02-15,O_65925,C_20973,cch_7,1,Dealers_Lounge,couch,love,Urban,vinyl,wood
+2020-02-12,O_66248,C_23298,cha_4,2,The_Executive,chair,captain,Rustic,suede,wood
+2020-02-19,O_76504,C_32164,stl_5,4,Tooshy_Zone,stool,tall_low_back_arms,Modern,leather,wood
+2020-02-16,O_76504,C_32164,stl_1,1,Stool_Pigeon,stool,tall_low_back,Modern,canvas,aluminum
+2020-02-17,O_83115,C_41114,stl_4,8,Booty_Scooty,stool,tall_low_back,Rustic,suede,aluminum
+2020-02-09,O_83115,C_41114,cch_6,1,Lovers,couch,long,Rustic,vinyl,wood
+2020-02-18,O_86342,C_85289,cch_5,1,Den_Master,couch,long,Modern,leather,wood
+2020-02-01,O_91478,C_70214,cch_5,1,Den_Master,couch,sectional,Modern,microfiber ,wood
+2020-02-01,O_91478,C_70214,cha_4,6,The_Executive,chair,table,Designer,suede,wood
+2020-02-17,O_62918,C_67302,stl_1,4,Stool_Pigeon,stool,tall_backless,Designer,vinyl,steel
