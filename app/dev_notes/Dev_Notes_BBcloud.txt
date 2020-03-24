@@ -1,0 +1,54 @@
+
+
+
+[ As Of  -  3/24/20 : ]  Brandon'S  Notes:
+
+
+	Several challenges overcame and still outstanding.....
+	______________________________________________________________________________________
+	{ Success With : }  
+		Implemented a few solutions for querying the database from a  webpage
+			first:       was just typing the query into the address bar was successful
+			Second: Was a proper query method, 
+			1. using an HTML form input field , 
+			2. use Submit and post to submit to and grab query via flask
+`			3. verify there are not restricted words in the query that could be harmful
+			to the database, ie , "delete", "drop", "create" NEED to ADD  "insert"
+			4.  if restricted word found in query , throws exception to user
+			5.  implemented easy , try / except for eligible query 
+				if any SQL Alchemey error thrown , we throw error message to user 
+				app does not fail
+			6. IF query is success, we dynamically generate a results table in HTML
+ 				a. I used Jinja For Loop method with a loop in a loop 
+				     to create, a row and table data cell for each item in the list 
+				b. I used jinja if index loop is even or odd to implement color style 
+			                          so everyother row is a alternating background color for readability
+
+	______________________________________________________________________________________
+	{Outstanding Issues: }
+
+		A. Column names for results table
+			* I tried everything but a pandas Dataframe solution with no success to get column 			   		 names returned with the query - it is the weirdest thing , it should be an option...
+	______________________________________________________________________________________
+	{ Next Features: } 
+		A. Drop down list , of saved querys, or views 
+
+		B. A solution for, users to save query, as a view or just text 
+			* it would be saved to a new table for just that
+			* we will dynamically create a drop down list of saved querys by querying that 
+				saved query table on page load
+		C. CLick Query:
+			* create a click or drop down selection for various query terms and table names, and 			  column names
+
+		D. Admin Login:
+			A. Method to login, verify login credintials match , a cryptically verifable solution where
+				as even if someone downloaded our code could not readily verify what the 
+				login code is supposed to be
+			B. with admin login, would permit , Table Creation, Deletions, Insertions etc ...
+
+		E. Visualizations:
+			A. Default chart types render based on query return
+			B. User can select chart types
+
+		F. Reporting:
+			A. Format view results for print, as a meeting ready report 		

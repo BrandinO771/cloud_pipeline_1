@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=3.0">
+  <title>Food Snap Corp</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/d3Style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.7.1/d3-tip.min.js"></script>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="static/css/style.css"> -->
+  
+ 
+ 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body style="background-color: rgb(132, 125, 124); background-blend-mode: multiply;">
+  <!-- <body style="background-color:  rgb(82, 82, 82)"> -->
+  <!-- <body style="background-image: url('/uploads/vintage-wallpaper.jpg');"> -->
+  <!-- <div id="back" style="background-image: url('/uploads/vintage-wallpaper.jpg');  z-index: 2; opacity: .5;"> -->
+
+    <!-- THIS IS THE DIVE FOR OUR BACKGROUND IMAGE -->
+    <div class="myDiv">
+      <div class="bg"></div>
+ 
+ 
+        
+
+    <div class="jumbotron" id= j1>
+      
+        <h2 class="display-4" id=d4 >FOOD SNAP !</h2>  
+        <!-- <font id=f1   >____________________________________</font> -->
+        <!-- <br> -->
+        <img style="margin-left: 43.5%; opacity: .7; width : 200px; height:200px;" src='https://media.istockphoto.com/vectors/happy-cartoon-chef-vector-illustration-vector-id685695372?k=6&m=685695372&s=612x612&w=0&h=U-QBIEDEq75ibGh0EjeGjRTHXVbc6zZgSc_uYyv8UYI='>
+        <br>
+        <br>
+
+        <p class="lead">Need a Recipe?  </p>
+        <p class="lead">Upload a picture of your ingredients.</p>
+
+        
+
+        <hr class="my-4">
+        <!-- <p>Click: (1) Click: "FIND IMAGE" , to Find Photo on your device. </p> -->
+     
+        <a class="btn btn-primary btn-lg" id= b1 href="#" role="button" >Find  Image</a>
+        <!-- <input type="file"> -->
+        <br>
+        <br>
+        
+
+        <!-- <form action="/action_page.php" > -->
+          <!-- <form method ="GET" action= "/show/"> -->
+         <form method ="POST" action= '/load_image/''> 
+        
+           <!-- <input  type="file" id=b2 name="myFile">  -->
+           <input  type="file" id=b2  name="file"> 
+           <!-- <input type="file" name="pic/" accept="image/*"> -->
+           <!-- <input type="submit"> -->
+ 
+            <br>
+            <!-- <p>(2) Click: "UPLOAD IMAGE", to Import your Image into the site to be evaluated.</p> -->
+            <input type="submit"  value= "Upload Image" onclick="startPhoto(0) , window.scrollTo(0, 900)" id=b3 > 
+         </form>
+
+        <br><br>
+
+      
+        <!-- <div> <button type="button"  value= "Upload Image" onclick="startPhoto(0)" id=b3 > </div> -->
+         
+      </div>
+    
+  <div class="container"  > 
+    <div class="row" >
+
+      <!-- BLOCK 2  START -->
+      <div class="col-lg-7" id = container1 > 
+            <br>
+            <div id=div1>
+                <h3>Photos Of Your Food Will Appear Below : </h3>
+                <br>
+                <div id =d9>
+                  <!-- STATUS BAR FOR RECIPE API -->
+                <h5 id="finalMessageB" style="margin-left: 15%;"></h5>
+                <progress id="progressBarB" value="0" max="100" style=" opacity: 0; margin-left : 16%;  background-color:rgb(9, 13, 255); color: white; width:60%; height: 40px ;"></progress>
+                <span id="statusB"></span>
+                <br>   
+
+               <script>
+                 
+              function startPhoto(b_val) {
+                 
+              var barB = document.getElementById('progressBarB');
+              var statusB = document.getElementById('statusB');
+              barB.value =0;
+  
+              // status.innerHTML
+              statusB.innerHTML = b_val + "%";
+              barB.value = b_val;
+              b_val++;
+             
+              var sims = setTimeout(function() {
+                startPhoto(b_val);
+                 }, 250); // 100 milliseconds
+              var finalMessageB = document.getElementById('finalMessageB');   
+              if (b_val < 10) {  finalMessageB.innerHTML = "Image Processing - Please Wait:";}
+              if (b_val == 100) {
+                statusB.innerHTML = "100%";
+                barB.value = 100;
+                clearTimeout(sims);
+                finalMessageB.innerHTML = "Image Process Complete";
+                d3.select("#progressBarB").style("opacity", "0") 
+                      }
+                  }
+                </script>
+            </div>   
+                <!-- <img id= img1 src="https://onelittleproject.com/wp-content/uploads/2016/07/DSC_9204.jpg" alt="Flowers in Chania"> -->
+                <!-- <img  id="img1" src="/show/ingredient1"> -->
+                <!-- <font id="f2"  value="" > {{ user_notice  }} </font> -->
+                  
+                
+
+                <font id="f2"  value="This is the value"> </font>
+                <!-- <img  id="img1" src="{{ url_for('send_file', filename=filename) }}"> -->
+                <font id="f3" >{{ photoIn }} </font>
+                <img  id="img1" src="{{ image_sourceB }}"> 
+                <br>
+                <font id="f3" >{{ photoOut }}</font>
+                <img  id="img1" src="{{ image_sourceA }}"> 
+               
+                <br>
+                <!-- <font id="f3"  value="{{value_trigger}}" > {{yourImageComplete }} </font> -->
+                <font id="f4"  value="{{detected_list}}" >  </font>
+             
+            </div>
+      </div>
+
+      <!-- BLOCK 2  END -->
+
+      <div class="col-lg-1" id =container2 style="opacity: 0;" >   </div>
+
+  
+      <!-- BLOCK 3  START -->
+      <div class="col-lg-4" id = container1> 
+        <br>
+        <div id=div1 >
+            <h3>Confirm Your Ingredients:</h3>
+            <!-- <h5>We found these food items in your picture.</h5> -->
+            <!-- JINJA TO PLACE THIS MESSAGE  -->
+            <br>
+            <h5>{{ we_found }} </h5>
+
+            <!-- <font>__________________________________________ </font> -->
+            <br>
+        </div>
+        <div>
+          <style> 
+              input[type=checkbox] {
+              width: 25px;
+              height:25px;
+              }
+          </style>
+            <form id=form1>
+
+            <!-- <form method ="POST" id=form1> -->
+            <!-- <form method ="POST" action="/query_indgredients" id=form1> -->
+              <!-- <input type="checkbox" name="ingredient_1" value="first ingred"> -->
+              <!-- <input type="checkbox" name="ingredient_2" value=" " unchecked><label>ingredient 2 label </label> </input> <br> -->
+              <!-- <input type="checkbox" name="ingredient_3" value=" " checked> ingredient 3 name<br><br>  -->
+              <font>Confirm the ingredients below </font>
+              <br>
+              <font>Then hit Submit for recipe !</font>
+              <br>
+          </form>  
+       </div>
+          <div>
+            <br>
+            <button type="button"  id=submit1  onclick="start(0) , window.scrollTo(0, 1800)" >Get Recipes!</button>
+              <br>
+              <br>
+              <br>
+                      
+
+             
+            </div>
+          </div>
+      <!-- BLOCK 3  END -->
+
+    
+    </div> <!--end of row   -->
+
+    <div class="row">
+      <div class="col-xs-12  col-md-12">
+        <div id="scatter">
+         <br>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12" id = container3 >
+        <div class="article">
+          
+
+          <div class="row container-fluid" id="container3" >
+         
+            <div id =d9>
+                  
+                <!-- STATU
+                <!-- STATUS BAR FOR RECIPE API -->
+              <h5 id="finalMessageA" style="margin-left: 15%;"></h5>
+              <progress id="progressBarA" value="0" max="100" style=" opacity: 0; margin-left : 16%;  background-color:rgb(9, 13, 255); color: white; width:60%; height: 40px ;"></progress>
+              <span id="statusA"></span>
+
+              <br>   
+                 
+              <script>
+                
+            function start(al) {
+               
+            var bar = document.getElementById('progressBarA');
+            var status = document.getElementById('statusA');
+            bar.value =0;
+
+            // status.innerHTML
+            status.innerHTML = al + "%";
+            bar.value = al;
+            al++;
+           
+            var sim = setTimeout(function() {
+              start(al);
+               }, 20 ); // 100 milliseconds
+            var finalMessageA = document.getElementById('finalMessageA');   
+            if (al < 10) {  finalMessageA.innerHTML = "Recipe Status:";}
+            if (al == 100) {
+              status.innerHTML = "100%";
+              bar.value = 100;
+              clearTimeout(sim);
+              finalMessageA.innerHTML = "Process is complete";
+              d3.select("#progressBarA").style("opacity", "0") 
+                    }
+                }
+              </script>
+              </div>
+            <h3 class="col-md-12">Your Recipes Will Appear Here :</h3>
+
+            <div class="row mr-auto" id="recipes">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <form method ="POST" action= '/'> 
+    <!-- <button type="button"  id= resets   onclick="location.reload() , window.scrollTo(0, 20)" >Restart</button> -->
+    <button type="submit"  id= resets    onclick="window.scrollTo(0, 20)" >Restart</button>
+    </form>
+  </div>
+
+
+
+  <!-- Footer-->
+  <div id="footer">
+
+    <br>
+    <br>
+    <body style="background-color: rgb(124, 124, 132);">
+
+    <p  id=footer1> Food Snap &copy; 2020  </p>
+    <p  id=footer1> Founders: Anna Favis, Brandon Steinke, Patrick Hennessey</p>
+    <br>
+     <br>
+    <br>
+    <br>
+    <br>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- <script type="text/javascript" src="assets/js/app.js"></script> -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</div> 
+</body>
+
+
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ACME FURNITURE CO!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+
+<body style= "background-color: rgb(170, 172, 182); font-family: Arial;">
+    
+    <br><br><br>
+    <form  style="margin-left:50px;" method ="POST" action= '/query_admin/''> 
+        <label for="query">Input a SQL Query</label><br>
+        <input style="height:100px; width: 300px;" type="text" id="query_a" name="query_ab"><br>
+         <input type="submit" value="submit">
+      </form>
+      
+      <br>
+      <p style="padding-left: 50px; font-size: 14px; color: rgb(0, 0, 0);"> 
+      Try The Following Querys :
+            <br>
+            SELECT * FROM customer_list  <br/>
+            or:   <br/>
+            SELECT * FROM orders_list
+      </p>
+      <br>
+    <font style="padding-left: 50px; font-size: 16px; color: rgb(0, 0, 65);">{{query_msg}} </font>
+    <font style="padding-left: 20px; font-size: 16px; color: blue;"> {{ user_query }} </font> <br><br>
+    <font style="padding-left: 50px; font-size: 25px; color: red;">  {{ error_query }} </font>
+
+    <!-- <br> SORRY WE ARE UNABLE TO PROVIDE COLUMN NAMES AT THIS TIME UNDER CONSTRUCTION<br> -->
+    <font style="padding-left: 30px; font-size: 18px; color: rgb(0, 0, 0); font-style: bold ;">{{db_results_msg}}</font> <br>
+    <br> 
+
+
+    <!-- ##################################################################################### -->
+    <!-- ########### THIS CODE CREATES OUR QUERY RESULTS TABLE ###################### -->
+    <table style="margin-left: 50px; font-family: Arial;">
+    
+    {% for item in fill_data %}
+        {% if loop.index is even %}
+            <tr style="background-color: rgba(71, 53, 88, 0.493); color: white;  "> 
+            {% for i in item %}
+             <td style="padding-bottom: 10px; padding-left:5px; padding-right:5px;"> {{ i }}  </td>        
+            {% endfor %}
+            </tr>   
+        {% endif %}   
+
+        {%- if loop.index is odd %}
+        <tr style="background-color: rgba(22, 16, 27, 0.493); color: white;  "> 
+            {% for i in item %}
+             <td style="padding-bottom: 10px; padding-left:5px; padding-right:5px;"> {{ i }}  </td>        
+            {% endfor %}
+            </tr>   
+        {% endif %}   
+        
+    {% endfor %}
+
+    </table>
+
+
+
+  <!-- ////////////////////////// PET PALS CODE  BELOW  /////////////////////////////////////// -->
+  <!-- ////////////////////////// PET PALS CODE  BELOW /////////////////////////////////////// -->
+<!-- 
+
+    <div class="container">
+        <div class="jumbotron" style="text-align: center">
+            <h1>Pet Pal</h1>
+            <p>Find your pet a pal!</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Look at all of the current pet pals!</h2>
+                <div id="plot"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h2><a href="/send">Add your pet here!</a></h2>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script> 
+
+-->
+  <!-- ////////////////////////// PET PALS CODE ABOVE /////////////////////////////////////// -->
+  <!-- ////////////////////////// PET PALS CODE ABOVE /////////////////////////////////////// -->
+
+
+
+
+
+
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
