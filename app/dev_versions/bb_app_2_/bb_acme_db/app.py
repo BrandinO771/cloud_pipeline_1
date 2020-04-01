@@ -2,9 +2,8 @@
 # import necessary libraries
 #################################################
 import os
-import pandas as pd
 import numpy as np
-from flask_sqlalchemy import SQLAlchemy 
+import pandas as pd
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -12,11 +11,15 @@ from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy import create_engine, inspect, func
 from sqlalchemy.ext.declarative import declarative_base
 from flask import (  Flask,    render_template,    jsonify,    request,    redirect)
+from flask_sqlalchemy import SQLAlchemy
+ 
+app = Flask(__name__)
+
+
 Bases = declarative_base()
 ###################################################
 ## ???? WHAT IS DECLARITIVE BASE VS AUTOMAP BASE ???
 ###################################################
-app = Flask(__name__)
 ###################################################
 # CONFIG :
 ###################################################
@@ -29,11 +32,14 @@ Base = automap_base()# reflect an existing database into a new model
 print("THis is the base", Base )
 Base.prepare(db.engine, reflect=True)# reflect the tables
 
+
+
 ###########################################
 # INSPECT DB
 ###########################################
 inspector = inspect(engine)
-inspector.get_table_names()
+inspector.get_table_names()  
+print("view names.",   inspector.get_view_names(schema=None))# give me a list of all views stored in db
 print( "inspector.get_table_names()", inspector.get_table_names())
 columns = inspector.get_columns("customer_list")
 # print("these are the columns", columns)
@@ -78,6 +84,37 @@ def home():
     # return jsonify(results)
 
 
+@app.route("/views")
+def view_displayer():
+    views = []
+    view_names =   inspector.get_view_names(schema=None)
+    views.append([view_names])
+    return jsonify(views)
+
+
+@app.route("/view_result/<the_sql>")
+def render_this(the_sql):
+    list_one =[]
+    list_two =[]
+    # WE ONLY WANT VALID QUERYS NOT HTML TITLES SELECT A VIEW IS FIRST OPTION IN OUR HTML DROP DOWN LIST
+    if the_sql != "Select A View" :
+
+        # print("this is view results your resquest is :", the_sql)
+        results = engine.execute(the_sql).fetchall()
+        print("these are results from DB", results)
+         
+        # return render_template("index.html", f_data = results) 
+
+        for i in results :  # TWO STEP PROCESS TO UNPACK AND REBUILD AS A LIST WITHOUT TUPLES OR PARENTHESIS SO JSON WILL BE HAPPY BELOW
+            print("results i :", i)
+            list_one = []
+            for x in i :
+                list_one.append(x)
+            list_two.append(list_one)
+        session.close()
+        return jsonify(list_two) ### SEND THIS BACK TO JAVASCRIPT AS A LIST OF LISTS  
+
+
 #####################################################
 #            CUSTOM QUERY METHOD                   ##
 #####################################################
@@ -116,6 +153,7 @@ def custom_query_admin():
             eval_split = eval_query.split(" ")
            
             print("THIS IS THE QUERY SPLIT", eval_split)
+            # custom_query = eval_split
             string_list = []
             string_list = eval_split
             for t in range(len(string_list)):
@@ -133,6 +171,7 @@ def custom_query_admin():
 
     ####################################################
     print("The custom query route is being called")
+    print("the Custom Query being sent to DB is:", custom_query)
     query_message = "Your Query Input Was:"
     db_results_msg = "Database Query Results Will Appear Below:"
     ####################################################
@@ -153,6 +192,7 @@ def custom_query_admin():
 
         print("this data from database", results)
         session.close()
+   
         return render_template("index.html", fill_data = results, user_query = custom_query, 
                                 query_msg= query_message, db_results_msg =db_results_msg)
 

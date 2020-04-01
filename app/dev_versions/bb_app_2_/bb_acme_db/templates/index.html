@@ -12,12 +12,22 @@
 
 <body style= "background-color: rgb(170, 172, 182); font-family: Arial;">
     
+    <div>
+        <font id="f1" > Database Views </font>
+        <select id="drop1_" >
+          <option id="op1">  Select A View </option> 
+        </select>
+      </div>
+
+
     <!-- ########################################################################### -->
     <!-- SQL INPUT BOX  -->
     <br><br><br>
-    <form  style="margin-left:50px;" method ="POST" action= '/query_admin/''> 
+    <form  style="margin-left:150px;" method ="POST" action= '/query_admin/''> 
         <label for="query">Input a SQL Query</label><br>
-        <input style="height:100px; width: 700px;" type="text" id="query_a" name="query_ab"><br>
+        <!-- <textarea name="query_ab" rows="10" cols="50"></textarea> -->
+        <textarea name="query_ab" style="height:100px; width: 700px;"></textarea>
+        <!-- <input style="height:100px; width: 700px;" type="text" id="query_a" name="query_ab"><br> -->
          <input type="submit" value="submit">
       </form>
       
@@ -38,11 +48,12 @@
     <font style="padding-left: 30px; font-size: 18px; color: rgb(0, 0, 0); font-style: bold ;">{{db_results_msg}}</font> <br>
     <br> 
 
+    <!-- <font style="padding-left: 50px; font-size: 10px; color: red;">    {{fill_data}} </font> -->
 
     <!-- ##################################################################################### -->
     <!-- ########### THIS CODE CREATES OUR QUERY RESULTS TABLE ###################### -->
     <table style="margin-left: 50px; font-family: Arial;">
-    
+   
     {% for item in fill_data %}
         {% if loop.index is even %}
             <tr style="background-color: rgba(71, 53, 88, 0.493); color: white;  "> 
@@ -63,8 +74,19 @@
     {% endfor %}
 
     </table>
+    {% for item in f_data %}
+        {{ item }}
+    {% endfor %}
 
+    <table id=t3 style=" margin-left: 50px; font-family: Arial; color: white; font-size: 12px; ">
+        <tbody id=t1  >
+            
+  
 
+        </tbody>
+
+    </table>
+    <!-- <tr id=t1  style="background-color: rgba(22, 16, 27, 0.493); color: white;  ">  -->
 
   <!-- ////////////////////////// PET PALS CODE  BELOW  /////////////////////////////////////// -->
   <!-- ////////////////////////// PET PALS CODE  BELOW /////////////////////////////////////// -->
@@ -97,10 +119,15 @@
   <!-- ////////////////////////// PET PALS CODE ABOVE /////////////////////////////////////// -->
 
 
+  <script src="https://d3js.org/d3-collection.v1.min.js"></script>
+  <script src="https://d3js.org/d3-dispatch.v1.min.js"></script>
+  <script src="https://d3js.org/d3-dsv.v1.min.js"></script>
+  <script src="https://d3js.org/d3-request.v1.min.js"></script>
+ 
 
+  <script src="https://unpkg.com/d3-fetch"></script>
 
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
 
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="{{ url_for('static', filename='js/app.js') }}"></script>
