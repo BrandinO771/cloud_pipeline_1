@@ -1,0 +1,306 @@
+
+
+/*THIS IS MONITOR*/
+@media screen 
+  and (min-device-width: 1200px) 
+  and (max-device-height: 1600px) 
+  and (orientation: landscape) 
+ { 
+  
+body {
+  zoom:95%;
+}}
+
+/*THIS IS LAPTOP*/
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-height: 1024px) 
+  and (orientation: landscape) 
+{
+  
+body {
+  zoom:80%;
+}}
+
+/*TABLETS*/
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (orientation: landscape) { 
+  
+body {
+  zoom:60%;
+}}
+/*PHONES*/
+@media only screen 
+  and (min-device-width: 360px) 
+  and (max-device-width: 800px) 
+  and (orientation: landscape) { 
+  
+body {
+  zoom:40%;
+}}
+
+
+
+/*BELOW WORKS ON ALL BUT LAPTOP*/
+
+/*
+
+
+@media only screen and (max-height :700px) {
+body 
+{
+  zoom:50%;
+  transform: scale(1,1); 
+  width: 100%;
+  height:100%;
+  }
+}*
+
+/
+
+/*@media only screen and (min-width: 450px) {
+  body {
+      zoom:30%;
+      transform-origin: top left;
+      transform: scale(1 ,1);
+      width: 30%;
+      height: 30%; 
+      }
+  } */
+
+*/
+@media only screen and (max-width: 1900px) {
+body {
+    zoom:90%;
+    /* transform-origin: top left; */
+    transform: scale(1 ,1);
+    width: 95%;
+    height: 95%;
+    }
+}
+
+body {
+/* zoom:90%; */
+
+
+padding: 0;
+background-color: rgb(87, 100, 100);
+}
+
+
+#map,
+body,
+html {
+max-height: 800px;
+height: 100%;
+}
+
+#mapid {
+height: 600px;
+}
+
+.info {
+background-color: #4c4b55;
+width: auto;
+color: white;
+padding: 1em;
+font-family: 'Roboto', sans-serif;
+border-radius: 10px;
+opacity: .9; 
+}
+
+#row2{
+color : #ffd268;
+font-weight: bold;
+text-decoration: underline;
+}
+
+#row3{
+color : #ffd268;
+font-weight: bold;
+font-size: 16px;
+}
+
+/* THIS IS FOR FLAG FORMATTING */
+.info #imgr{
+max-width: 50px;
+max-height: 50px; 
+
+margin-bottom: -25px; 
+}
+.info2 {
+background-color: #4c4b55;
+width: auto;
+color: white; 
+padding: 1em;
+font-family: 'Roboto', sans-serif;
+display: table;
+border-collapse: separate;
+border-spacing: 1px;
+max-width: 400px;
+min-width: 250px;
+width: auto;
+border-radius: 10px;
+opacity: .9;
+border-style: solid;
+border-width: 2px;
+border-color: rgb(42, 42, 42);
+}
+
+.info3 {
+background-color: #4c4b55;
+width: auto;
+color: white; 
+padding: 1em;
+font-family: 'Roboto', sans-serif;
+display: table;
+border-collapse: separate;
+border-spacing: 1px;
+max-width: 400px;
+min-width: 250px;
+width: auto;
+border-radius: 10px;
+opacity: .9;
+border-style: solid;
+border-width: 2px;
+border-color: rgb(42, 42, 42);
+}
+
+.info4 {
+background-color: #4c4b55;
+width: auto;
+color: white; 
+padding: 1em;
+font-family: 'Roboto', sans-serif;
+display: table;
+border-collapse: separate;
+border-spacing: 1px;
+max-width: 400px;
+min-width: 250px;
+width: auto;
+border-radius: 10px;
+opacity: .9;
+border-style: solid;
+border-width: 2px;
+border-color: rgb(42, 42, 42);
+}
+
+.info h2 {
+padding: 0;
+margin-top: 0;
+font-family: 'Playfair Display SC', serif;
+}
+
+.info h3 {
+padding: none;
+font-weight: bold;
+font-size: 15px;
+font-family: Arial;
+color: #fac86c;
+}
+
+.flag {
+font-size: 2em;
+}
+
+#f1{
+font-weight: bold;
+font-size: 18px;
+font-family: Arial;
+color: #fac86c;
+}
+
+#f2{
+font-weight: normal;
+font-size: 14px;
+font-family: Arial;
+text-decoration: underline;
+color: #fac86c;
+}
+
+
+#f3{
+padding-left: 20px;
+font-weight: bold;
+font-size: 30px;
+font-family: Arial;
+padding-top: 40px;
+color: #cafffb;
+}
+
+#font_header {
+margin-left: 5px; 
+font-family: Arial;
+font-weight: bold;
+font-size: 12px;
+color: rgb(230, 255, 230);
+padding-top: 5px;
+padding-bottom: 10px;
+padding-right: 10px;
+margin-bottom: 5px;
+}
+
+
+.world_scroll{
+width: 200px;
+height: 50px;
+padding-top: 5px;
+padding-bottom: 10px;
+padding-left: 15px;
+border-radius:  5px;
+border-style: solid;
+border-width: 3px;
+border-color: rgb(68, 84, 105);
+position: relative;
+background-color: rgb(84, 104, 158);
+color: #eeffff;
+font-size: 15px;
+font-family: Arial;
+font-weight: bold;
+margin-bottom: 15px;
+margin-left: 20%;
+margin-top: 20px;
+box-shadow: 1px -2px 5px 0px rgb(97, 255, 255) inset;
+}
+
+.legend {
+line-height: 25px;
+max-height: auto;
+max-width: auto;
+color: white;
+border-radius: 10px;
+padding-left: 20px;
+}
+
+.legend i {
+float: left;
+width: 20px;
+height: 18px;
+opacity: 0.7;
+line-height: 20px;
+padding-left: 15px;
+}
+
+#leg_nums  {
+margin-left: 15px;
+}
+
+
+/* BELOW WE OVERRIDE LEAFLET POSITIONS - I DID THIS FOR LEGEND CONTROL TO LIFT IT OFF BOTTOM OF PAGE */
+.leaflet-right {
+right: 0;
+}
+/* .leaflet-right {
+top: -10ppx;
+}
+*/
+
+.leaflet-left {
+left: 10px;
+}
+
+.leaflet-bottom {
+bottom: 50px;
+}

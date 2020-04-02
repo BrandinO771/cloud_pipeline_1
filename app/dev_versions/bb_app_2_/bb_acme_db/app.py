@@ -180,6 +180,34 @@ def custom_query_admin():
     from sqlalchemy import exc  # THIS IMPORT LINE CATCHES ALL ALCHEMY ERRORS
     try:
         results =engine.execute(custom_query).fetchall()
+        
+        #############################################
+        ### BELOW WILL GENERATE A DICTIONARY OF OUR QUERY WITH KEYS AND VALUES 
+        result_list = []
+        result_list.append( [{column:value for column, value in result.items()} for result in results])
+        print("this is new results list", result_list)
+        # print("this is one line code", [{column:value for column, value in result.items()} for result in results])
+
+        #############################################
+        ### BELOW WILL DO THE SAME THING GENERATE A DICTIONARY OF OUR QUERY WITH KEYS AND VALUES   
+        # for v in results:
+        #     for column, value in v.items():
+        #         print('{0}: {1}'.format(column, value))
+
+        #############################################
+        ### THIS WILL SIMPLY GIVE US OUR COLUMNS FROM THE QUERY
+        columns_list = []
+        h = 0
+        for v in results:
+            if (h == 0 ):
+                print("these are the columns from the query")
+                for column in v.items():
+                    print('{0[0]}'.format(column))
+                    columns_list.append( ('{0[0]}'.format(column)))
+            h +=1
+        print("this is our new columns list", columns_list)
+        #########################################################
+
         # results =engine.execute("""SELECT * FROM orders_list""").fetchall()
         # print (" results.keys ",  results.keys())
         # BELOW WE ARE JUST PULLING THE WHOLE DATABASE INTO A DATAFRAME FROM THERE YOU CAN SORT SELECT THE DATAFRAME 
@@ -194,7 +222,7 @@ def custom_query_admin():
         session.close()
    
         return render_template("index.html", fill_data = results, user_query = custom_query, 
-                                query_msg= query_message, db_results_msg =db_results_msg)
+                                query_msg= query_message, db_results_msg =db_results_msg, columns = columns_list)
 
     except exc.SQLAlchemyError:
         pass 

@@ -53,7 +53,12 @@
     <!-- ##################################################################################### -->
     <!-- ########### THIS CODE CREATES OUR QUERY RESULTS TABLE ###################### -->
     <table style="margin-left: 50px; font-family: Arial;">
-   
+    <tr style="background-color: rgba(71, 53, 88, 0.493); color: white;  ">
+    {% for x in columns %}      
+        <td style="padding-bottom: 10px; padding-left:5px; padding-right:5px;"> {{ x }}  </td>        
+    {% endfor %}
+    </tr>   
+
     {% for item in fill_data %}
         {% if loop.index is even %}
             <tr style="background-color: rgba(71, 53, 88, 0.493); color: white;  "> 
