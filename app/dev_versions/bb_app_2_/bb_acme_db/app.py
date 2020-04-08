@@ -10,6 +10,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import Column, Integer, String, Float
 from sqlalchemy import create_engine, inspect, func
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import exc  # THIS IMPORT LINE CATCHES ALL ALCHEMY ERRORS
 from flask import (  Flask,    render_template,    jsonify,    request,    redirect)
 from flask_sqlalchemy import SQLAlchemy
  
@@ -28,11 +29,12 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///data/acme_furniture.sqlite"
 engine = create_engine("sqlite:///data/acme_furniture.sqlite", echo=False)
 conn = engine.connect()
 db = SQLAlchemy(app)
+
 Base = automap_base()# reflect an existing database into a new model
 print("THis is the base", Base )
 Base.prepare(db.engine, reflect=True)# reflect the tables
 
-
+#import build_db_insert_block
 
 ###########################################
 # INSPECT DB
@@ -51,6 +53,7 @@ columns = inspector.get_columns("orders_list")
 for c in columns:
     print(c['name'], c["type"])
 
+
 # # Print all of the classes mapped to the Base
 # v = Base.classes.keys()
 # print( "THESE ARE THE KEYS", Base.classes.keys())
@@ -60,10 +63,78 @@ customers = Base.classes.customer_list
 # order =  Base.classes.orders_list
 session = Session(engine)                 
 # order =  Base.classes.orders
+# stmt = db.session.query(customers).statement
 
 ########################################################################################################
 #         R  O  U  T  E  S                                                                            ##
 ########################################################################################################
+
+
+def insert_data():
+    data = [( 888, "xxx", "03-01-2020",  ) , ( 666, "fff", "03-02-2020")  ]
+    package = ""
+    ct = 1 
+    for i in data :
+        if (ct < len(data)):
+            package = package +str(i)+ ","
+        else:
+            package = package +str(i)
+        ct+=1
+   
+    pack = f'''INSERT INTO test_a(col1, col2, col3) VALUES {package} ;'''
+     ##################################################
+    ##// OUR SQL COMMAND ABOVE MEANS BELOW 
+    # INSERT INTO 
+    # TABLE_NAME_HERE(NAMES_OF COLUMNS RECEIVING DATA, COL NAME,COL NAME) 
+    # VALUES {OUR STUCTORED STRING FROM ORIG LIST}
+     ###################################################
+    print("this is our pack", pack)
+    ####################################
+    ## BELOW IS  METHOD TO INSERT OUR DATA AS A TRANSACTION 
+    ## IF AN EXCEPTION IS RAISED THEN THE TRANSACTION WILL AUTO ROLLBACL
+    ## THERE IS NO NEED TO MANUALLY WRITE BEGIN TRANSACTION; END TRANSACTION IN OUR PACK ABOVE
+    ## FYI TRANSACTION ARE MUCH FASTER FOR BULK INSERT 
+    
+    # try:
+    #     with engine.begin() as connection:
+    #         connection.execute(pack)
+
+    # except exc.SQLAlchemyError as e:
+    #     error = str(e.__dict__['orig'])
+    #     print( "THE SQL ERROR WAS: ",error)
+    #     pass 
+
+##################################################################################
+## TRY below to force data type on insert - this reque
+# https://docs.sqlalchemy.org/en/13/core/connections.html
+# with engine.begin() as connection:
+#     r1 = connection.execute(table1.select())
+#     connection.execute(table1.insert(), {"col1": 7, "col2": "this is some data"})
+# or 
+#conn.execute(
+#     "INSERT INTO table (id, value) VALUES (?, ?)",
+#     (1, "v1"), (2, "v2")
+# )
+
+# conn.execute(
+#     "INSERT INTO table (id, value) VALUES (?, ?)",
+#     1, "v1"
+# )
+    try:
+        with engine.begin() as connection:
+            connection.execute(
+                "INSERT INTO test_a(col1, col2, col3) VALUES(?,?,?)",
+                 data     
+            )
+
+    except exc.SQLAlchemyError as e:
+        error = str(e.__dict__['orig'])
+        print( "THE SQL ERROR WAS: ",error)
+        pass 
+    session.close()
+##################################################################################
+insert_data()
+##################################################################################
 
 @app.route("/")
 def index():
